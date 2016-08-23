@@ -3,6 +3,9 @@
 set -- junk $2
 shift
 
+echo "Shell is here"
+echo $0 $1 $2 $3 $4
+
 function source_sync_file {
 	while [ "$path" != "" ] 
 	do
@@ -15,17 +18,26 @@ function source_sync_file {
 	exit 0 
 }
 
+path=`realpath $2`
+source_sync_file
 
 if  [ $1 = "please_sync_this_project" ]; then
-	path=`realpath $2`
-	source_sync_file
 	PROJECT_DIR=${PWD##*/}
 	
 	rsync -azcu -e 'ssh -q' --exclude-from=$path/.gitignore $path $REMOTE_HOST:$REMOTE_BASE_DIR/
 	RESULT=$?
 
 	exit $RESULT
+
+elif [ $1 = "please_give_me_ssh" ]; then
+
+	ssh -t $REMOTE_HOST "cd $REMOTE_BASE_DIR; bash"
+	RESULT=$?
+
+	exit $RESULT
 fi
 
 
-bash "$@"
+
+echo "You do something wrong"
+exit 1
