@@ -1,23 +1,23 @@
 This is simplest, easy  vim plugin to rsync directory.  
-Put .sync file to the root of the directory,  
-and vim will automatically sync your project with remote host.  
+Put .sync file to the project root directory 
+    
+.sync example:  
+REMOTE_HOST=test  
+REMOTE_BASE_DIR=/home/&lt;username&gt;  
   
+Hope you configure ssh settings of host via .ssh/config.  
+
 Depends on  
 Plugin 'rosenfeld/conque-term'          " Consoles as buffers  
   
-.sync example:  
-REMOTE_HOST=test  
-REMOTE_BASE_DIR=/home/<username>  
-  
-Hope you configure ssh settings of host via .ssh/config.  
-  
-<F5> - Toggle bash  
-<F6> - Toggle remote bash  
-<F7> - Sync project  
+&lt;F5&gt; - Toggle bash  
+&lt;F6&gt; - Toggle remote bash  
+&lt;F7&gt; - Sync project  
   
 So, just   
 * Develop the project  
-* Add .sync with credentials  
-* Press <F7> to sync th project  
-* Press <F6> to get a bash on remote server and execute script  
+* Add .sync with credentials to the project root
+* Also add .gitignore file
+* Press &lt;F7&gt; to sync the project  
+* Press &lt;F6&gt; to get a bash on remote server and execute script  
 
