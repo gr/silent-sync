@@ -1,10 +1,5 @@
 #!/bin/bash
 
-set -- junk $2
-shift
-
-echo "Shell is here"
-echo $0 $1 $2 $3 $4
 
 function source_sync_file {
 	while [ "$path" != "" ] 
@@ -31,7 +26,7 @@ if  [ $1 = "please_sync_this_project" ]; then
 
 elif [ $1 = "please_give_me_ssh" ]; then
 
-	ssh -t $REMOTE_HOST "cd $REMOTE_BASE_DIR; bash"
+	ssh -q -t $REMOTE_HOST "cd $REMOTE_BASE_DIR; bash"
 	RESULT=$?
 
 	exit $RESULT
